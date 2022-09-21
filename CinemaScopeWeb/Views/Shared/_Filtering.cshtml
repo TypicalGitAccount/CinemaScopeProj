@@ -1,0 +1,96 @@
+﻿<div class="row accordion-item p-0 m-0" style="background-color: #171717; color: #fffbf0 ">
+    <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed text-center m-0"
+                type="button" data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseOne"
+                aria-expanded="False" aria-controls="flush-collapseOne"
+                style="outline: none; box-shadow: none; background-color: #171717; color: #fffbf0 ">
+            Filters
+        </button>
+    </h2>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne">
+        @using (Html.BeginForm("FilteringResult", "Home"))
+        {
+            <div class="row">
+                <div class="col-3">
+                    <select size="4" class="form-select" multiple
+                            style="outline: none; box-shadow: none; background-color: #171717; color: #fffbf0 "
+                            aria-label="Default select example"
+                            name="genres">
+                        <option disabled="disabled">Genre</option>
+                        @foreach (var genre in @Model.Genres)
+                        {
+                            <option value="@genre">@genre</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select size="4" class="form-select" multiple
+                            style="outline: none; box-shadow: none; background-color: #171717; color: #fffbf0 "
+                            aria-label="Default select example"
+                            name="countries">
+                        <option disabled="disabled">Country</option>
+                        @foreach (var country in @Model.Countries)
+                        {
+                            <option value="@country">@country</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select size="4" class="form-select" multiple
+                            style="outline: none; box-shadow: none; background-color: #171717; color: #fffbf0 "
+                            aria-label="Default select example"
+                            name="types">
+                        <option disabled="disabled">Type</option>
+                        @foreach (var type in @Model.Types)
+                        {
+                            <option value="@type">@type</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-3">
+                    <select size="4" class="form-select" multiple
+                            style="outline: none; box-shadow: none; background-color: #171717; color: #fffbf0 "
+                            aria-label="Default select example"
+                            name="years">
+                        <option disabled="disabled">Year</option>
+                        @foreach (var year in @Model.Years)
+                        {
+                            <option value="@year">@year</option>
+                        }
+                    </select>
+
+                </div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="col-6 mt-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="true" id="flexCheckDefault" name="isWatched">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Watched
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-2">
+                        <button type="submit"
+                                class="btn btn-outline-light btn-light rounded float-end"
+                                style="color: #FCFCFA; background-color: #2d2d2d; float: right !important">
+                            Apply filters
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <div class="mt-2">
+                        <button type="submit"
+                                class="btn btn-outline-light btn-light rounded"
+                                style="color: #FCFCFA; background-color: #2d2d2d; float: right !important">
+                            Apply filters
+                        </button>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,57 @@
+﻿@using System.Drawing
+@model IEnumerable<CinemaScopeWeb.ViewModels.AboutUsViewModel>
+@{
+    ViewBag.Title = "About Us";
+}
+
+@section Styles
+{
+    <style>
+        img {
+            width: 250px;
+            height: 350px
+        }
+    </style>
+}
+<div style="color: #FCFCFA">
+    <div class="text-center mb-1"><h2>About Us</h2></div>
+    <div>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+        {
+            @Html.ActionLink("Create new member", "Create", "AboutUs", new {area = ""}, new
+            {@class = "btn-outline-light btn btn-lg btn-dark", style = "width: 100%"})
+        }
+    </div>
+    <div class="text-black container-fluid" style="box-sizing: content-box; width: auto">
+        <div class="films row d-flex justify-content-center" style="color: #fcfcfa">
+            @foreach (var item in Model)
+            {
+                <div class="col-2 m-3 p-1">
+                    <div class="row justify-content-around">
+                        @Html.Raw("<img id=\"show\" src=\"data:image/jpeg;base64," +
+                                  Convert.ToBase64String(item.Image) + "\" />")
+                    </div>
+                    <div class="row justify-content-center">
+                        <h3>@item.Name</h3>
+                    </div>
+                    <div class="row justify-content-center">
+                        @foreach (var point in item.Description.Replace("\r", "").Split('\n'))
+                        {
+                            <h3>@point</h3>
+                        }
+                    </div>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+                    {
+                        <div class="row justify-content-center">
+                            @Html.ActionLink("Edit", "Edit", "AboutUs", new {id = item.Id}, new {@class = "btn-outline-light btn btn-lg btn-dark"})
+                            @Html.ActionLink("Delete", "Delete", "AboutUs", new {id = item.Id}, new {@class = "btn-outline-light btn btn-lg btn-dark mt-1"})
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+    <br/>
+
+</div>
+

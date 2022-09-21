@@ -1,0 +1,46 @@
+﻿@model CinemaScopeWeb.ViewModels.UserProfileViewModel
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<<<<<<< HEAD
+<h2>UserProfile</h2>
+<br />
+<br />
+<h4>@Html.LabelFor(m => m.UserName)</h4>
+<h4>@Model.UserName</h4>
+<br />
+<h4>@Html.LabelFor(m => m.Email)</h4>
+<h4>@Model.Email</h4>
+<br />
+<p>Hello, admin!</p>
+<br />
+<h4>List of managing pages:</h4>
+<br />
+<br />
+@Html.ActionLink("Manage Movies", "ManageMovies", "Admin", new { area = "" }, new { @class = "btn btn-info" })
+<br />
+<br />
+@Html.ActionLink("Manage Users", "ManageUsers", "Admin", new { area = "" }, new { @class = "btn btn-info" })
+<br />
+<br />
+@Html.ActionLink("Manage AboutUs", "Index", "AboutUs", new { area = "" }, new { @class = "btn btn-info" })
+=======
+<div style="color: #FCFCFA ">
+    <br />
+    <br />
+    <h4>@Html.LabelFor(m => m.FirstName)</h4>
+    <h4>@Model.FirstName</h4>
+    <br />
+    <h4>@Html.LabelFor(m => m.UserName)</h4>
+    <h4>@Model.UserName</h4>
+    <br />
+    <h4>@Html.LabelFor(m => m.LastName)</h4>
+    <h4>@Model.LastName</h4>
+    <br />
+    <h4>@Html.LabelFor(m => m.Email)</h4>
+    <h4>@Model.Email</h4>
+    <br />
+    <p>Hello, admin!</p>
+</div>
+>>>>>>> development

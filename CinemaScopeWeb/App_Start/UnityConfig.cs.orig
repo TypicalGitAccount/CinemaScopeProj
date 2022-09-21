@@ -1,0 +1,41 @@
+using MovieService.Contexts;
+using MovieService.Imdb;
+using MovieService.Interfaces;
+using MovieService.Repositories;
+using MovieService.Services;
+using Services;
+using System.Web.Mvc;
+using Unity;
+using Unity.Mvc5;
+using UserService.Interfaces;
+using UserService.Services;
+
+namespace CinemaScopeWeb
+{
+    public static class UnityConfig
+    {
+        public static void RegisterComponents()
+        {
+			var container = new UnityContainer();
+
+            container.RegisterType<MovieContext>();
+            container.RegisterType<MovieTypeRepository>();
+            container.RegisterType<GenreRepository>();
+            container.RegisterType<CountryRepository>();
+            container.RegisterType<CustomHttpClient>();
+<<<<<<< HEAD
+            container.RegisterType<MovieRepository>();
+            container.RegisterType<UserToMovieRepository>();
+            container.RegisterType<IAccountService, AccountService>();
+            container.RegisterType<IUserService, UserService.Services.UserService>();
+            container.RegisterType<IRatingService, RatingService>();
+            container.RegisterType<IImdbService, ImdbService>();
+=======
+            container.RegisterType<MovieRepository>();        
+            container.RegisterType<UserToMovieRepository>();        
+>>>>>>> user-with-movie-interaction-feature
+            
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+        }
+    }
+}

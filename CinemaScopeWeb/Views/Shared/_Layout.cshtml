@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("Styles", required: false)
+</head>
+
+<body class="d-flex flex-column min-vh-100 w-auto" body-content flex-grow: 1>
+<header>
+    <nav class="navbar navbar-light p-2 ps-2 pe-2" style="background-color: #1c191a;">
+        <div class="container" style="color: #FCFCFA; font-weight: bold;">
+            <a class="nav-link" href="/" style="color: #d6094a; font-size: 37px;">CinemaScope</a>
+            <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false"
+                        style="color: #FCFCFA; font-size: 37px; text-decoration: none; cursor: pointer;">
+                    Ratings
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="@Url.Action("Top250", "Movies")">Top 250 IMDb</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("MostLiked", "Movies")">Most liked films</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("MostWatched", "Movies")">Most watched films</a></li>
+                </ul>
+            </div>
+
+            @if (User.Identity.IsAuthenticated && User.IsInRole("Administrator"))
+            {
+                <a class="nav-link"
+                   href="@Url.Action("Index", "Admin")"
+                   style="color: #FCFCFA; font-size: 37px;">Profile</a>
+            }
+            else
+            {
+                <a class="nav-link"
+                   href="@Url.Action("Index", "User")"
+                   style="color: #FCFCFA; font-size: 37px;">Profile</a>
+            }
+
+            @using (Html.BeginForm("SearchResult", "Home", FormMethod.Post, new { style = "display: inline-flex" }))
+            {
+                <input type="text"
+                       name="input"
+                       class="form-control rounded"
+                       placeholder="Search"
+                       aria-label="Search"
+                       aria-describedby="search-addon" style="width: 300px" />
+
+                <button class="btn btn-outline-light btn-light m-1 rounded" style="color: #FCFCFA; background-color: #171717; width: 100px">Find film</button>
+            }
+            <div>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="row">
+
+                        <h3 class="col">@User.Identity.Name</h3>
+                        <button class="btn btn-outline-light btn-light rounded col"
+                                style="color: #FCFCFA; background-color: #171717;"
+                                onclick="location.href = '@Url.Action("Logout", "Account")'">
+                            Log Out
+                        </button>
+                    </div>
+                }
+                else
+                {
+                    <button class="btn btn-outline-light btn-light rounded"
+                            style="color: #FCFCFA; background-color: #171717;"
+                            onclick="location.href = '@Url.Action("Login", "Account")'">
+                        Log In
+                    </button>
+                    <button class="btn btn-outline-light btn-light rounded"
+                            style="color: #FCFCFA; background-color: #171717;"
+                            onclick="location.href = '@Url.Action("Register", "Account")'">
+                        Create account
+                    </button>
+                }
+
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="container-fluid body-content" style="flex-grow: 1; background-color: #171717 ">
+        @RenderBody()
+</div>
+<div>
+        <footer class="text-center text-white mt-auto position-sticky">
+            <div class="text-center p-3" style="background-color: #1c191a">
+                <a class="text-white" href="@Url.Action("Index", "AboutUs")">About us</a><br />
+                © 2022 Copyright by FluffyRabbits
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

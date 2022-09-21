@@ -1,0 +1,27 @@
+﻿@using CinemaScopeWeb.ViewModels
+@using PagedList
+@using PagedList.Mvc
+@model IPagedList <MovieToHomeViewModel>
+@{
+    ViewBag.Title = "Test";
+}
+
+<h2>Test</h2>
+
+<table style="width:100%;">
+    <tr style="font-weight:bold;background-color:#e2e2e2">
+        <td>Title </td>
+        <td>Shortinfo </td>
+        <td>ImageTitle </td>
+    </tr>
+    @foreach (var jopa in @Model)
+    {
+        <tr>
+            <td>@jopa.Title </td>
+            <td>@jopa.Id </td>
+        </tr>
+    }
+</table>
+    <div style="background: #fff; text-align: right; padding: 4px;">
+        @Html.PagedListPager(@Model, page => Url.Action("Pagination", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+    </div>

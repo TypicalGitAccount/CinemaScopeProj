@@ -1,0 +1,36 @@
+﻿@model CinemaScopeWeb.ViewModels.Account.LoginUserViewModel
+@{
+    ViewBag.Title = "Login";
+}
+<div class="mb-1 align-content-center" style="color: #FCFCFA">
+    <div class="text-center"><h1 style="font-weight: bold">Login</h1></div>
+    <div class="row text-center">
+        @using (Html.BeginForm("Login", "Account"))
+        {
+            <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary()
+            </div>
+            
+            <div class="mb-1 text-center w-25" style="margin: 0 auto">
+                @Html.LabelFor(m => m.UserName, new { @class = "h2" })
+                @Html.TextBoxFor(m => m.UserName, new
+                { @class = "form-control", type = "text", placeholder = "Type your login" })
+            </div>
+            <div class="mt-2 mb-2 text-center w-25" style="margin: 0 auto">
+                @Html.LabelFor(m => m.Password, new { @class = "h2" })
+                @Html.TextBoxFor(m => m.Password, new { type = "password", @class = "form-control", placeholder = "Type your password" })
+            </div>
+            <div class="mt-2 me-2">
+                <div class="row justify-content-md-center h3" style="width: 500px; display: flex; margin: 0 auto">
+                    <div class="col">
+                        <button type="submit" class="btn-outline-light btn btn-lg btn-dark" ,
+                                style="color: #FCFCFA; background-color: #d6094a">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

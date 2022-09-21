@@ -1,0 +1,103 @@
+﻿@model MovieService.Dtos.MovieDto
+
+@{
+    ViewBag.Title = "ManageMovie";
+}
+
+<div class="mb-1" style="color: #FCFCFA">
+    <div class="text-center">
+        <h2 style="font-weight: bold">Add/Edit film page</h2>
+    </div>
+    <div class="row">
+        @using (Html.BeginForm("CreateUpdateMovie", "Admin"))
+        {
+            <div class="mb-1">
+                @Html.HiddenFor(m => m.Id)
+                <h2>Title</h2>
+                @Html.TextBoxFor(m => m.Title
+                    , new { @class = "form-control w-50", type = "text", placeholder = "Type here film title" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Title)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Poster</h2>
+                @Html.TextAreaFor(m => m.Poster,
+                    new { @class = "form-control w-50", placeholder = "Type here url to poster" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Poster)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Year</h2>
+                @Html.TextBoxFor(m => m.Year,
+                    new { @class = "form-control w-50", type = "text", placeholder = "Type here film title" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Year)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Plot</h2>
+                @Html.TextAreaFor(m => m.Plot,
+                    new { @class = "form-control w-50", placeholder = "Enter plot of the film here" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Plot)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Cast</h2>
+                @Html.TextAreaFor(m => m.Cast,
+                    new { @class = "form-control w-50", placeholder = "Enter here cast members" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Cast)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>TypeId</h2>
+                @Html.DropDownListFor(m => m.TypeId, Model.MovieTypes,
+                    new { @class = "form-control", style = "width: 50%" })
+            </div>
+            <div class="mb-1">
+                <h2>Budget</h2>
+                @Html.TextBoxFor(m => m.Budget,
+                    new { @class = "form-control w-50", type = "text", placeholder = "Enter budget of a film" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Budget)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Box Office</h2>
+                @Html.TextBoxFor(m => m.BoxOffice,
+                    new { @class = "form-control w-50", type = "text", placeholder = "Enter box office of a film" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.BoxOffice)
+                </div>
+            </div>
+            @Html.HiddenFor(m => m.SiteUsersRating)
+            @Html.HiddenFor(m => m.RatingIMDb)
+            <div class="mb-1">
+                <h2>Genres</h2>
+                @Html.ListBoxFor(m => m.GenreIds, Model.GenreList, new
+                { @class = "form-control", style = "width: 50%" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.GenreIds)
+                </div>
+            </div>
+            <div class="mb-1">
+                <h2>Countries</h2>
+                @Html.ListBoxFor(m => m.CountryIds, Model.CountriesList, new
+                { @class = "form-control", style = "width: 50%" })
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.CountryIds)
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn-outline-light btn btn-lg btn-dark" ,
+                        style="color: #FCFCFA; background-color: #d6094a">
+                    Confirm Changes
+                </button>
+            </div>
+            
+        }
+    </div>
+</div>

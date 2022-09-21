@@ -1,0 +1,88 @@
+﻿@model CinemaScopeWeb.ViewModels.EditUserProfileViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+<style type="text/css">
+    .select-button {
+        display: none;
+        margin-top: 30px;
+    }
+
+    label {
+        margin-right: 20px;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[type="checkbox"]').click(function () {
+            var inputValue = $(this).attr("value");
+            $("." + inputValue).toggle();
+        });
+    });
+</script>
+
+<div class="text-center" style="color: #FCFCFA">
+    <h2 style="font-weight: bold">Here you can edit your profile</h2>
+</div>
+<div class="row text-center text-white" style="color: #FCFCFA">
+    @using (Html.BeginForm("Edit", "User"))
+    {
+        <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+        </div>
+
+        <div class="mb-1 text-center w-25" style="margin: 0 auto">
+
+            @Html.LabelFor(m => m.FirstName, new { @class = "h2" })
+            @Html.TextBoxFor(m => m.FirstName, new
+            { @class = "form-control", type = "text" })
+        </div>
+        <div class="mb-1 text-center w-25" style="margin: 0 auto">
+
+            @Html.LabelFor(m => m.LastName, new { @class = "h2" })
+            @Html.TextBoxFor(m => m.LastName, new
+            { @class = "form-control", type = "text" })
+        </div>
+        <div class="mt-2 mb-2 text-center w-25" style="margin: 0 auto">
+            @Html.LabelFor(m => m.Email, new { @class = "h2" })
+            @Html.TextBoxFor(m => m.Email, new
+            { type = "text", @class = "form-control" })
+        </div>
+        <div>
+            <label>
+                <input type="checkbox" value="Change"> Do you want to change password?
+            </label>
+        </div>
+        <div class="Change select-button">
+            <div class="mt-2 mb-2 text-center w-25" style="margin: 0 auto">
+                @Html.LabelFor(m => m.OldPassword, new { @class = "h2" })
+                @Html.TextBoxFor(m => m.OldPassword, new
+                { type = "password", @class = "form-control", placeholder = "Type your old password" })
+            </div>
+            <div class="mt-2 mb-2 text-center w-25" style="margin: 0 auto">
+                @Html.LabelFor(m => m.Password, new { @class = "h2" })
+                @Html.TextBoxFor(m => m.Password, new
+                { type = "password", @class = "form-control", placeholder = "Type new password" })
+            </div>
+            <div class="mt-2 mb-2 text-center w-25" style="margin: 0 auto">
+                @Html.TextBoxFor(m => m.PasswordConfirm, new
+                { type = "password", @class = "form-control", placeholder = "Confirm new password" })
+            </div>
+
+        </div>
+        <div class="mt-2 me-2">
+            <div class="row justify-content-md-center h3" style="width: 500px; display: flex; margin: 0 auto">
+                <div class="col">
+                    <button type="submit" class="btn-outline-light btn btn-lg btn-dark">Edit</button>
+                    @Html.ActionLink("Cancel", "Index", "User", new
+                    {
+                        @class = "btn-outline-light btn btn-lg btn-dark",
+                        style = "color: #FCFCFA; background-color: #d6094a"
+                    })
+                </div>
+            </div>
+        </div>
+    }
+</div>

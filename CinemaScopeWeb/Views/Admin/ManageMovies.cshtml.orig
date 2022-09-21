@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CinemaScopeWeb.ViewModels.ManagedMovieViewModel>
+
+@{
+    ViewBag.Title = "ManageMovies";
+}
+
+<div style="color: #FCFCFA">
+    <h2>@Html.ActionLink("Add movie", "ManageMovie")</h2>
+
+<<<<<<< HEAD
+<br />
+<br />
+
+@{ 
+    foreach(var movie in Model)
+    {
+        <h2>@movie.Title</h2>
+        <img src=@movie.Poster style="height:250px;width:150px;" />
+        @Html.ActionLink("Edit", "EditMovie", new { Id = movie.Id });
+        @Html.ActionLink("Delete", "DeleteMovie", new { Id = movie.Id });
+=======
+    @{
+        foreach (var movie in Model)
+        {
+            <h2>@movie.Title</h2>
+            <img src=@movie.Poster style="height:250px;width:150px;" />
+            @Html.ActionLink("Edit", "ManageMovie", new { Id = movie.Id });
+            @Html.ActionLink("Delete", "DeleteMovie", new { Id = movie.Id });
+        }
+>>>>>>> development
+    }
+</div>

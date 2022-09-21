@@ -1,0 +1,30 @@
+﻿<div class="text-center">
+    <button class="btn-outline-light btn btn-lg btn-dark" style="width: 100%" id="next">Show more</button>
+</div>
+<br />
+<script>
+    $(document).ready(function(){
+
+        var films = $(".films #film");
+        var numToShow = 25;
+        var button = $("#next");
+        var numInList = films.length;
+        films.hide();
+        if (numInList > numToShow) {
+            button.show();
+        }
+        films.slice(0, numToShow).show();
+        if (films.length <= numToShow) {
+            button.hide();
+        }
+        button.click(function(){
+            var showing = films.filter(':visible').length;
+            films.slice(showing - 1, showing + numToShow).fadeIn();
+            var nowShowing = films.filter(':visible').length;
+            if (nowShowing >= numInList) {
+                button.hide();
+            }
+        });
+
+    });
+</script>

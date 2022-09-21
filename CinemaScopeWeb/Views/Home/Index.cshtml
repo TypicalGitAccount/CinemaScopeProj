@@ -1,0 +1,40 @@
+﻿@using PagedList.Mvc
+@model CinemaScopeWeb.ViewModels.HomeViewModel
+
+@{
+    ViewBag.Title = "Cinema Scope";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@Html.Partial("_Filtering")
+<div class="text-black container-fluid" style="box-sizing: content-box; width: auto">
+    <div class="row d-flex justify-content-center">
+        @foreach (var movie in @Model.Movies)
+        {
+            <div class="col-2 m-3 p-1">
+                <div class="row justify-content-around">
+                    <img class="btn p-0" style="width: 300px; height: 400px" alt=""
+                         onclick="location.href = '@Url.Action("Get", "Movies", new {id = movie.Id})'" src="@movie.Poster" />
+                </div>
+                <div class="row justify-content-center">
+                    <div align="center">
+                        <a class="p-0 h2 text-decoration-none" style="color: #FCFCFA" href="@Url.Action("Get", "Movies", new {id = movie.Id})">@movie.Title</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div style="display: flex; justify-content: center;">
+        @Html.PagedListPager(Model.Movies, page => Url.Action("Index", new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>
+<br/>
+<script>
+    $('option').mousedown(function (e) {
+        e.preventDefault();
+        jQuery(this).toggleClass('selected');
+
+        jQuery(this).prop('selected', !jQuery(this).prop('selected'));
+        return false;
+    });
+</script>

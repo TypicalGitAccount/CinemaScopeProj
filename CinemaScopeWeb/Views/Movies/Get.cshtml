@@ -1,0 +1,148 @@
+﻿@using Microsoft.Ajax.Utilities
+@model CinemaScopeWeb.ViewModels.MovieViewModel   
+@{
+    ViewBag.Title = $"{Model.Movie.Title}";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container ">
+    <div class="row m-4"  style="color: #fcfcfa">
+        <h3>@Model.Movie.Title @Model.Movie.Year</h3>
+    </div>
+    <div class="row m-4" style="color: #fcfcfa">
+        <div class="col-4">
+            <img src="@Model.Movie.Poster" style="width: 400px; height: 500px;"/>
+            <br/>
+            @if (@Model.IsWatched)
+            {
+                <button type="button"
+                        onclick="location.href = '@Url.Action("MarkAsWatched", new {id = Model.Movie.Id})'"
+                        class="btn btn-primary btn-lg mt-2"
+                        style="width: 400px; background-color: black">
+                    Watched
+                </button>
+            }
+            else
+            {
+                <button type="button"
+                        onclick="location.href = '@Url.Action("MarkAsWatched", new {id = Model.Movie.Id})'"
+                        class="btn btn-primary btn-lg mt-2"
+                        style="width: 400px; background-color: #2d2d2d">
+                    Watched
+                </button>
+            }
+
+            <h4 style="color: #FCFCFA">Our site rating - @Model.UserRating/10,0</h4>
+            <div class="row">
+                <div class="col">
+                    @if (@Model.IsLiked)
+                    {
+                        <button type="button"
+                                onclick="location.href = '@Url.Action("LikeMovie", new {id = Model.Movie.Id})'"
+                                class="btn btn-primary btn-lg"
+                                style="background-color: black;">
+                            Like
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button"
+                                onclick="location.href = '@Url.Action("LikeMovie", new {id = Model.Movie.Id})'"
+                                class="btn btn-primary btn-lg"
+                                style="background-color: #2d2d2d;">
+                            Like
+                        </button>
+                    }
+                    @if (@Model.IsDisliked)
+                    {
+                        <button type="button"
+                                onclick="location.href = '@Url.Action("DislikeMovie", new {id = Model.Movie.Id})'"
+                                class="btn btn-primary btn-lg"
+                                style="background-color: black;">
+                            Dislike
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button"
+                                onclick="location.href = '@Url.Action("DislikeMovie", new {id = Model.Movie.Id})'"
+                                class="btn btn-primary btn-lg"
+                                style="background-color: #2d2d2d;">
+                            Dislike
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-6" style="color: #FCFCFA">
+            @if (!@Model.Movie.Type.Name.IsNullOrWhiteSpace())
+            {
+                <div>
+                    <hr />
+                    <h3>Type - @Model.Movie.Type.Name</h3>
+                    <hr />
+                </div>
+            }
+            @if (!@Model.Movie.Budget.IsNullOrWhiteSpace())
+            {
+                <div>
+                    <h3>Budget - @Model.Movie.Budget</h3>
+                    <hr />
+                </div>
+            }
+            @if (!@Model.Movie.Budget.IsNullOrWhiteSpace())
+            {
+                <div>
+                    <h3>Box Office - @Model.Movie.BoxOffice</h3>
+                    <hr />
+                </div>
+            }
+            @if (!@Model.Movie.Cast.IsNullOrWhiteSpace())
+            {
+                <div>
+                    <h3>Cast - @Model.Movie.Cast</h3>
+                    <hr />
+                </div>
+            }
+            @if (!@Model.Movie.RatingIMDb.IsNullOrWhiteSpace())
+            {
+                <div>
+                    <h3>IMDB Rating - @Model.Movie.RatingIMDb</h3>
+                    <hr />
+                </div>
+            }
+            @if (@Model.Movie.Genres.Count>0)
+            {
+                <div>
+                    <h3>Genres : </h3>
+                    @foreach (var genre in Model.Movie.Genres)
+                    {
+                        <p class="h4" style="display: inline">@genre.Name </p>
+                    }
+                    <hr />
+                </div>
+            }
+            @if (@Model.Movie.Countries.Count>0)
+            {
+                <div>
+                    <h3>Countries : </h3>
+                    @foreach (var country in Model.Movie.Countries)
+                    {
+                        <p class="h4" style="display: inline">@country.Name</p>
+                    }
+                    <hr />
+                </div>
+            }
+            @if (!@Model.Movie.Plot.IsNullOrWhiteSpace())
+            {
+                <div>
+                    <h3>Plot:</h3>
+                </div>
+                <div>
+                    <h4><em>@Model.Movie.Plot</em></h4>
+                    <hr />
+                </div>
+            }
+        </div>
+    </div>
+</div>

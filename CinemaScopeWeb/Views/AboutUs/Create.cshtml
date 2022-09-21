@@ -1,0 +1,58 @@
+﻿@model CinemaScopeWeb.ViewModels.CreateAboutUsViewModel
+@{
+    ViewBag.Title = "Create";
+}
+<div class="mb-1 align-content-center" style="color: #FCFCFA">
+    <div class="text-center"><h2>Create new member</h2></div>
+    <div class="row text-center">
+        @using (Html.BeginForm("Create", "AboutUs", FormMethod.Post, new {enctype = "multipart/form-data"}))
+        {
+            <div class="mb-1 text-center" >
+                @Html.Raw("<img id=\"show\" style=\"width: 250px; height: 350px; \" src=\"data:image/jpeg;base64," +
+                          Convert.ToBase64String(Model.Image) + "\" />")
+            </div>
+            <div class="mt-2 mb-2 text-center">
+                <input type="button" id="loadFile" value="Select image" onclick="document.getElementById('file').click();" class = "btn-outline-light btn btn-lg btn-dark"/>
+                <input type="file" style="display: none;" id="file" name="file" accept=".jpg,.jpeg,.png"/>
+                <script>
+                    function handleFileSelect(evt) {
+                        var reader = new FileReader();
+                        var file = evt.target.files;
+                        var img = document.getElementById('show');
+                        reader.onload = function(e) { img.src = e.target.result };
+                        reader.readAsDataURL(evt.target.files[0]);
+                    }
+
+                    document.getElementById('file').addEventListener('change', handleFileSelect, false);
+                </script>
+            </div>
+            <div>
+                <div class="row justify-content-md-center h3" style="width: 500px; display: flex; margin: 0 auto">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new {@class = "form-control", type = "text", placeholder = "Type here name"})
+                </div>
+            </div>
+            <div>
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Name)
+                </div>
+                <div class="row justify-content-md-center h3" style="width: 500px; display: flex; margin: 0 auto ">
+                    @Html.LabelFor(m => m.Description)
+                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control", placeholder = "Type here something about new member of a team" })
+                    
+                </div>
+                <div class="mb-1 h4 text-center" style="margin: 0 auto; text-decoration: none; color: #d6094a; width: 26%">
+                    @Html.ValidationMessageFor(m => m.Description)
+                </div>
+            </div>
+            <div class="mt-2 me-2">
+                <div class="row justify-content-md-center h3" style="width: 500px; display: flex; margin: 0 auto">
+                    <div class="col">
+                        <button type="submit" class="btn-outline-light btn btn-lg btn-dark">Create</button>
+                        @Html.ActionLink("Cancel", "Index", "AboutUs", new {area = ""}, new {@class = "btn-outline-light btn btn-lg btn-dark", style = "color: #FCFCFA; background-color: #d6094a"})
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

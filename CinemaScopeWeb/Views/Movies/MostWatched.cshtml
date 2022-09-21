@@ -1,0 +1,32 @@
+﻿@model List<MovieService.Dtos.MostWatchedDto>
+
+@{
+    ViewBag.Title = "MostWatched";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-black container-fluid" style="box-sizing: content-box; width: auto">
+    <div class="films row d-flex justify-content-center">
+        @foreach (var movie in Model)
+        {
+            <div id="film" class="col-2 m-3 p-1">
+                <div class="row justify-content-around">
+                    <img class="p-0 btn" style="width: 200px; height: 300px" alt="" src="@movie.Image"
+                         onclick="location.href = '@Url.Action("Get", "Movies", new {id = movie.Id})'"/>
+                </div>
+                <div class="row justify-content-center">
+                    <div align="center">
+                        <h2 class="p-0 btn h4 text-decoration-none" style="color: #FCFCFA"
+                            onclick="location.href = '@Url.Action("Get", "Movies", new {id = movie.Id})'">@movie.Title</h2>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div align="center">
+                        <h2 class="p-0 h4 text-decoration-none" style="color: #FCFCFA">Watched @movie.Watched time(s)</h2>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@Html.Partial("_ShowMoreButton")

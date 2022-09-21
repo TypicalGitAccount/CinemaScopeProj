@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "RatingsNavigation";
+}
+
+<div class="row mt-2">
+    <div class="col text-end mt-2">
+        <button type="button" class="btn btn-outline-light btn-lg"
+                style="color: #FCFCFA; background-color: #d6094a;"
+                onclick="location.href = '@Url.Action("MostLiked", "Movies")'">
+            Most liked movies
+        </button>
+    </div>
+    <div class="col  mt-2">
+        <button type="button" class="btn btn-outline-light btn-lg"
+                style="color: #FCFCFA; background-color: #d6094a;"
+                onclick="location.href = '@Url.Action("MostWatched", "Movies")'">
+            Most watched movies
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="text-center mt-2">
+        <button type="button" class="btn btn-outline-light btn-lg"
+                style="color: #FCFCFA; background-color: #d6094a;"
+                onclick="location.href = '@Url.Action("Top250", "Movies")'">
+            Top 250 IMDB movies
+        </button>
+    </div>
+</div>

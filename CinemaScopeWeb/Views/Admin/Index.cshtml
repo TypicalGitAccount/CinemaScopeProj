@@ -1,0 +1,27 @@
+﻿@model CinemaScopeWeb.ViewModels.UserProfileViewModel
+@{
+    ViewBag.Title = "UserProfile";
+}
+
+<div style="color: #FCFCFA">
+    <div class="m-1 h2 form-floating list-inline" style="font-weight: bold">
+        Welcome, Admin!
+    </div>
+    <div class="row accordion-item p-0 m-0" style="background-color: #1c191a; color: #FCFCFA">
+        <h4 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed h2" style="outline: none; box-shadow: none; background-color: #1c191a; color: #FCFCFA"
+                    type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="False" aria-controls="collapseOne">
+                Managing panel:
+            </button>
+        </h4>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne">
+            <div class="accordion-body row">
+                <div class="list-inline">
+                    @Html.ActionLink("Movies", "ManageMovies", "Admin", new { area = "" }, new { @class = "btn-outline-light btn btn-lg btn-dark m-2", style = "width: 32%" })
+                    @Html.ActionLink("Users", "ManageUsers", "Admin", new { area = "" }, new { @class = "btn-outline-light btn btn-lg btn-dark m-2", style = "width: 32%" })
+                    @Html.ActionLink("AboutUs", "Index", "AboutUs", new { area = "" }, new { @class = "btn-outline-light btn btn-lg btn-dark m-2", style = "width: 32%" })
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

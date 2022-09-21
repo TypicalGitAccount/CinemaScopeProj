@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CinemaScopeWeb.ViewModels.ManagableUserViewModel>
+
+@{
+    ViewBag.Title = "Users";
+}
+
+<div style="color: #FCFCFA">
+    <div>
+        <h2 class="text-center">Users managing panel</h2>
+    </div>
+    <div class="films row d-flex justify-content-center">
+        @foreach (var user in Model)
+        {
+            <div class="col-2 m-3 p-1" id="film">
+                <h2>@user.UserName</h2>
+                @if (user.IsBanned)
+                {
+                    @Html.ActionLink("Unban", "ManageUserBan", new {userName = @user.UserName},
+                        new
+                        {
+                            @class = "btn-outline-light btn btn-lg btn-dark"
+                        })
+                }
+                else
+                {
+                    @Html.ActionLink("Ban", "ManageUserBan", new {userName = @user.UserName}, new
+                    {
+                        @class = "btn-outline-light btn btn-lg btn-dark",
+                        style = "color: #FCFCFA; background-color: #d6094a"
+                    })
+                }
+            </div>
+        }
+    </div>
+    @Html.Partial("_ShowMoreButton")
+</div>
